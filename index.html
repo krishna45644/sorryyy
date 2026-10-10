@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bubuuuu... sorryyyyyyyyyy </title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+:root {
+  --paper: #f4e5c5;
+  --ink: #543426;
+  --rose: #a94351;
+  --gold: #b88b48;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #171018;
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  color: #ffe6b5;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .15; transform: scale(.7); }
+  to { opacity: .9; transform: scale(1.2); }
+}
+
+.intro {
+  min-height: 100svh;
+  padding: 35px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #f8e8ca;
+  position: relative;
+  z-index: 1;
+}
+
+.small-title {
+  color: #d7ad75;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.intro h1 {
+  font: 600 clamp(45px, 9vw, 94px) 'Dancing Script', cursive;
+  margin: 24px 0 12px;
+  color: #ffe2c3;
+  text-shadow: 0 0 35px #bd657d77;
+}
+
+.intro p {
+  max-width: 460px;
+  line-height: 1.9;
+  font-size: 19px;
+  color: #dfc7b4;
+}
+
+button {
+  cursor: pointer;
+  border: 1px solid #c89a67;
+  background: linear-gradient(135deg, #873b49, #50202d);
+  color: #fff0dc;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 17px;
+  transition: .3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px #a9435155;
+}
+
+#openBtn { margin-top: 25px; }
+
+#letterArea {
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 25px 15px 100px;
+}
+
+.parchment {
+  position: relative;
+  padding: clamp(25px, 6vw, 70px);
+  background:
+    radial-gradient(ellipse at 10% 10%, #fff4d7 0, transparent 35%),
+    radial-gradient(ellipse at 90% 90%, #b18b5b55 0, transparent 35%),
+    repeating-linear-gradient(0deg, #00000003 0px, #00000003 1px,
+      transparent 2px, transparent 5px),
+    var(--paper);
+  box-shadow: 0 15px 70px #0009;
+  border: 1px solid #c7a575;
+  outline: 5px solid #e7cf9f13;
+  outline-offset: 5px;
+  transform-origin: top;
+  animation: unroll 1.8s ease both;
+}
+
+@keyframes unroll {
+  from { opacity: 0; transform: perspective(900px) rotateX(-9deg) scaleY(.06); }
+  to { opacity: 1; transform: perspective(900px) rotateX(0) scaleY(1); }
+}
+
+.ornament {
+  text-align: center;
+  color: #a77b43;
+  font-size: 24px;
+  letter-spacing: 8px;
+}
+
+.letter-title {
+  font: 600 clamp(36px, 7vw, 62px) 'Dancing Script', cursive;
+  text-align: center;
+  color: #873b49;
+  margin: 24px 0;
+}
+
+.letter p {
+  font-size: clamp(18px, 2.7vw, 22px);
+  line-height: 2;
+  margin: 0 0 25px;
+  white-space: pre-line;
+}
+
+.letter .salutation {
+  font: 600 32px 'Dancing Script', cursive;
+  color: #873b49;
+}
+
+.letter .special {
+  text-align: center;
+  font: 500 clamp(25px, 5vw, 38px) 'Dancing Script', cursive;
+  color: #a43f53;
+  margin: 45px 0;
+}
+
+.divider {
+  text-align: center;
+  color: #ad8051;
+  margin: 40px 0;
+  letter-spacing: 10px;
+}
+
+#chapters {
+  display: grid;
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.chapter {
+  padding: 27px clamp(22px, 5vw, 45px);
+  background: #f4e5c5;
+  border-left: 4px solid #a94351;
+  box-shadow: 0 10px 35px #0004;
+  animation: fadeUp .7s ease both;
+}
+
+.chapter h2 {
+  font: 600 32px 'Dancing Script', cursive;
+  color: #873b49;
+}
+
+.chapter p {
+  font-size: 20px;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.counter {
+  text-align: center;
+  color: #e5c9a8;
+  font-size: 15px;
+  margin: 20px 0;
+}
+
+.seal {
+  text-align: center;
+  margin: 65px 0 25px;
+}
+
+.seal button {
+  width: 105px;
+  height: 105px;
+  padding: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, #cf6d78, #7b1f32 75%);
+  border: 5px double #e5b57b;
+  font-size: 39px;
+  box-shadow: 0 8px 25px #53121c77;
+}
+
+#secret {
+  display: none;
+  text-align: center;
+  font: 600 32px 'Dancing Script', cursive;
+  line-height: 1.7;
+  margin: 30px 0;
+}
+
+footer {
+  text-align: center;
+  color: #d9b995;
+  padding: 35px 15px 60px;
+  font: 24px 'Dancing Script', cursive;
+}
+
+.heart {
+  position: fixed;
+  z-index: 5;
+  bottom: -30px;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  to { transform: translateY(-110vh) rotate(35deg); opacity: 0; }
+}
+
+#topBtn {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 8;
+  padding: 10px 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<section class="intro">
+  <div class="small-title">A letter, little letter from your bondhuuuuu sa bachaaaa... </div>
+  <h1>For My heartbeat </h1>
+  <p>
+    Tujhe khone ka darr tha, phir bhi tujhe rula diya,
+    Apne hi haathon se apna jahaan jala diya... 
+    Sorry toh keh doon, par dard kaise mitaun,
+    Tu khush rahe bas… main khud ko kaise samjhaun? bubuuuu ji🥀
+  </p>
+  <p><i>bubuuuu i don't know but i really want to tell you how much you mean to me... jita pta hai uta btauga mummaaa ji... </i></p>
+  <button id="openBtn" onclick="openLetter()">Open your letter 💌</button>
+</section>
+
+<main id="letterArea" hidden>
+  <article class="parchment">
+    <div class="ornament">✦ ❦ ✦</div>
+    <h1 class="letter-title">for my one n only person... </h1>
+
+    <div class="letter">
+      <p class="salutation">Meri pyaari Bubuuuuu ji, meri jaannnuuuu ,</p>
+
+      <p>
+        Mummaa teko pta bhi nhi hai tu kiti jyada important hai mere liye,
+        Sbdo me agar jahir kru to shayd na ker pau but han try to krunga 
+        i know tu sochti hai pagal ho gya hai but me sachi me ho gaya hu tere pyaar me budhu ji 
+        mujhe agar meri jindgi aur tere sath 2 pal extra sukoon se bitane ka option mile to me wo 2 pal tere sath bitana chahunga meri jaan 
+
+        i know me tere ko ache se treat nhi ker paata hu but me try krta hu meri jaannnnn 
+        merii bachuuu aur meri aakhiri sans tak kerta rhunga budhuuuuuu ji 
+        agar tu mere se eta pyaar ker skti hai to me bhla pagal hone se kyu itrau 
+        mummaaa ji tune meko bnaya hai toh abh khud pe dought kerna chod do 
+        teko pta bhi nhi tu kitni precious hai meri zindgi me meri jaanuuuu
+        meriii pyaari si bachuuu merii mumma ji meri jaanuuuu merii pyaari si bachuuuu 
+        meri bondhuuuu si sherni ji the only i want is youuuuuu only you mumma ji 
+        aur pinky promise bus tu hi rhegi mumma ji abh to mout bhi alag nhi ker skti hme 
+        tu bus bhrosha rkhna me nibhaunga bhi aur nibhata chla jauga bhi mumma meri aakhiri breath tak meriii kuchu puchuuuu si bivii ji... 
+      </p>
+
+      <p class="special">
+        "Agar meri zindagi ek kitaab hai,
+        toh Bubu, tum uska sabse khoobsurat chapter ho... samjhe budhuuu ji "
+      </p>
+
+      <p>
+        meri bondhuuuu si bachuuuu teko pta bhi nhi me kitna lucky feel kertta hu ki meri zindgi me tu hai meri jaanuuuu... 
+        i wish me tere ko explain ker pau kisi din ki kita jyada pyaar kerta hu tere se merii zindgi bhi choti pad jayegi i think so 
+        agar kabhi explain ker pauga to bhi i think nhi explain ker pauga tune btaya tha ki tere ko garden psnd hai 
+        agar me shi hu to agar me zinda hu to mumma pinky promise tere ko jnha tak najar jaaye wha tak bus apna garden sirf tera aur mera sif apna garden hoga mumma ji 
+        pinky vala promise ji budhuu ji meri bondhuuuuu ji 
+        agar kabhi life bhut heavy ho jaye na to me tere paas hu hmesha kabhi bhi khud ko akela feel na kerna meri jaanuuuu 
+        i promisee tere liye hmesha available rhunga mumma ji hmesha hmesha rhunga mummaaa ji pinky vala promise ji meri wifuuu ji ... 
+        i hope me tere ko ache se treat kerta houga per meko lagta hai jitna tu deserve kerti hai utna nhi ker pa rha hu to 
+        maaf ker dena meri jaanuuu abh aakhir hu to aapka hi na aapka acha sa pyaara sa bondhuuu sa bachuuuu hu na.. hna hu na mumma ji .... 
+        aur fresher vale din ke liye me bhut sharminda hu me maafi nhi mang skta kyuki meko nhi pta me kya kru jo uski bharpayi ker pau 
+        per mera best dugna aur ek best person bnne ka try krunga mera 1000 dunga mumma ji aur hmesha phle din se bettter bnne ka try krunga mumma ji ... 
+      </p>
+
+      <div class="divider">♡ ✦ ♡</div>
+
+      <p>
+        Teko ek baat btata budhuuuu ji 
+        mera na ek spna hai ki tere sath ek chhota sa ghar ho jha hum dono ho apne do chote chote bachee ho dono aappe jaayyee sirf aappe 
+        me aapko pyaara lagta hu na to ek mere pe bhi chla jaye to bhi koi khata nhi merii jaanuuuuu aur kuch nhi chiye tu happy happy rhe aur 
+        mere se kabhi bhi koi bhi baat bolne se phle kuch na sochna pde teko bus etna kabil bnna hai meri jaannnuuuuuuu.... 
+        Teko shyd pta bhi nhi hoga meko akela rehna psnd hai per tu vo phla skash hai jiski mene hmesha khavaish kiya hai ki her pal her lamhe me 
+        mere sath ho mera hath pkad ke mere sath rhe bus hum dono ho aur koi nhi chiye meko na hi pesha na koi aur saksh bus tu merii jaanuuuuuu bus tuuuu 
+        meko aaj bhi yaad hai tune meko kha tha ki teko meri way of thinking bhut attractive lgi per mumma tere se mahobat kerne ke liye meko koi reason ki jrurat nhi pdi mumma ji 
+        Aur han jruri nhi hai her baar me hi shi hou me bhi insaan hu galtiya bhut kerta hu chije bhul jaata hu to please meko apna gussa diya kro na mumma ji 
+        me shambhalunga bhi aur guussa hone ke baad rona bhi me teko seene se lga ke chup bhi krauga mumma ji teko bus khus dekhna hi meri ekloti khvaish hai mumma ji... 
+      </p>
+
+      <p class="special">
+        "Kabhi agar koi aapko puche na ki kese ho to bta sach btana 
+        ki jisme meri jaan bsti hai usne hi mujhe bhut rula diya haime bura nhi manuga mumma ji 
+        meko pta hai me bhut hurt kr chuka hu already teko mummma ji "
+      </p>
+
+      <p>
+        Teko pta hai ek term hoti hai soulconnection 
+        aur meko her time jub bhi me ye sochta hu tune meko choose kiya ya mene per meko yhi lagta hai ki khuda ne hme etna kabil bnaya ki es janam me bhi dundh liya apne better half ko mumma ji 
+        thank youu mumma ji aur acha vala hai mumma ji i know nothing mumma tu bus meko sub btaya ker ki tune ese kiya bhut bura lga meko 
+        me vo galti kabhi dubara nhi dohrauga aur dohrau to marna meko aur please meko another chance dena me better bnunga mumma ji 
+        jub bhi koi bad khyaal aata hai na to imagine ker leta hu meri bubu mere sath hai to bhut sukoon milta hai meri jaanuuuuuuu merii bubu ji 
+        i loveeeeeee youuuuuuuuu soooooooooo soooooooooo soooooooooo sooooooooooooo sooooooooooooooo soooooooooooo soooooooooo soooooooooooo soooooo
+        sooooooooooo soooooooooo sooooooooooo sooooooooo soooooooooooooooo soooooooooooooooo soooooooooooooo soooooooooooooo soooooooooooooo muchhhhhhhh moreeeeeeeee
+        meriiiiiiii jaannnnnn meriiiii budhuuuuuu ji meriiiiiiii sweetuuuuuu ji 
+        meriiiiii goluuuuu moluuuuuu ji merii madomji 
+        meri mohtrmaji meriiii biviiiii ji meri wifurrrrrrr ji meriiiiiii pyaari si mummuuuuuu ji meriiiii mummaaaa 
+        meraaaaa sukoonn mera ghar mera eklota saksh meri puri jindgi ki amanat meriii jaanuuuuuuuu.... 
+      </p>
+
+      <div class="divider">❦ ❦ ❦</div>
+
+      <p>
+        Aur bubuu kabhi agar lage na me badal gya hu kuch to miss hai mereme to mere se test le lena mumma ji 
+        me paas houga ya nhi pta nhi per tere ko overthinking to nhi kerna pdega na budhuuu ji 
+        tu etni pyaari hoke bhi etni sunder hoke bhi etni shamjhdaar hoke bhi etni cutuuuuuuu hokar bhi merko choose kerti hai her roj mumma ji 
+        to mera bhi vada rha agar tu kabhi kuch agar bolegi to meri aakhiri lakir vhi hogi mumma ji 
+        pinkyyyyyy promiseeeeeee mumma ji 
+        i swear i will be better mumma ji i will be better for you meri jaanuuuuuuu 
+        teri greatness aur kindness ka mukabla to na ker pau but apna best dunga mumma ji besttttttestttttttt mumma ke liye acha bcha bnunga mumma ji 
+        tu meko apna samjhti hai to sub baate bina chupaye bina scohe btana bachuuuuu ji i only want ki to happyyyy rhe bubuuuu ji .... 
+      </p>
+
+      <p class="special">
+        I love you, Bubu. Aaj bhi, kal bhi,
+        aur her pal jab tak aakhiri sans na leluuuuuu mummaaaaaa ji ... ❤️
+      </p>
+
+      <p class="salutation">Tumhara,</p>
+      <p class="salutation">Tumhara pagal bondhuuuu sa mandak tera hi rhega mumma ji  ♡</p>
+    </div>
+
+    <div class="ornament">aur tu jita pdegi ye khatam nhi hoga to jyada der mat bethna okay na bondhuuu ji ... </div>
+  </article>
+
+  <div class="counter" id="counter">Chapter 1 · A love that keeps growing</div>
+
+  <div id="chapters"></div>
+
+  <div class="controls">
+    <button onclick="addChapter()">Mera pyaar sirf aapke liye , Bubu ♡</button>
+    <button onclick="toggleHearts()">more love for youuuu...  💗</button>
+  </div>
+
+  <div class="seal">
+    <p style="color:#e5c9a8;font-size:20px">One last little secret...</p>
+    <button onclick="revealSecret()" aria-label="Open the secret">♥</button>
+    <div id="secret">
+      I... want to make babiesss with youuu..  💌<br>
+      WILL YOU MARRYYYY MEEE.....  💌<br>
+      Is letter ka end ho sakta hai,<br>
+      par tumhare liye likhi meri feelings<br>
+      ek page mein kabhi fit nahi hongi. ♡
+    </div>
+  </div>
+</main>
+
+<footer>
+  Made with my tears mumma...  only for my Bubu ♡
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑ Top
+</button>
+
+<script>
+const stars = document.getElementById('stars');
+
+for (let i = 0; i < 85; i++) {
+  const star = document.createElement('span');
+  star.className = 'star';
+  star.textContent = Math.random() > .5 ? '✦' : '·';
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 100 + '%';
+  star.style.fontSize = (8 + Math.random() * 13) + 'px';
+  star.style.animationDelay = Math.random() * 4 + 's';
+  stars.appendChild(star);
+}
+
+function openLetter() {
+  const area = document.getElementById('letterArea');
+  area.hidden = false;
+  document.getElementById('openBtn').textContent = 'Your letter is open ♡';
+  area.scrollIntoView({ behavior: 'smooth' });
+  floatHearts(18);
+}
+
+let chapterNumber = 0;
+
+const chapters = [
+  {
+    title: 'The Little Things I Love About You',
+    text: `Bubu, kabhi-kabhi pyaar kisi grand gesture mein nahi hota.
+Woh tumhari ek chhoti si message mein hota hai, ek random
+conversation mein, ek smile mein, aur un moments mein jab
+hum bina kisi plan ke bas baatein karte rehte hain.
+
+Main chahta hoon ki hum in little things ko kabhi ordinary
+samajhkar ignore na karein. Kyunki shayad future mein
+yahi chhoti memories sabse precious banengi. ♡`
+  },
+  {
+    title: 'When Life Is Not Perfect',
+    text: `Meri jaan, har din fairy tale jaisa nahi hoga.
+Kabhi hum tired honge, kabhi busy, kabhi kisi baat ko
+samajhne mein time lagega. Lekin main chahta hoon ki hum
+ek dusre ko enemy nahi, apni team ka partner samjhein.
+
+Hum disagreement kar sakte hain aur phir bhi ek dusre
+ki respect kar sakte hain. Hum space le sakte hain aur
+phir bhi care kar sakte hain. We can learn, heal and grow
+without expecting either person to be perfect. ❤️`
+  },
+  {
+    title: 'A Thousand Tiny Dates',
+    text: `Mujhe tumhare saath ek din long drive par jaana hai,
+kabhi street food try karna hai, kabhi baarish dekhni hai,
+kabhi late-night talks karni hain, aur kabhi bas chup-chaap
+ek dusre ke paas baithna hai.
+
+Har date expensive ya perfect honi zaroori nahi.
+Tumhari company, mutual comfort aur humari hasi —
+mere liye memories banane ke liye itna hi kaafi hai. 🌙`
+  },
+  {
+    title: 'My Promise to Keep Learning',
+    text: `Bubu, main tumse sirf promises karna nahi chahta.
+Main un promises par kaam bhi karna chahta hoon.
+Jab main galat hoon, toh accept karun. Jab tum kuch share
+karo, toh genuinely sunun. Jab confusion ho, toh assumptions
+ke bajaye tumse baat karun.
+
+Main tumhe har problem ka perfect solution nahi de sakta,
+lekin main patience, honesty aur respect ke saath
+relationship mein apna part nibhane ki koshish kar sakta hoon. ♡`
+  },
+  {
+    title: 'For Every Version of You',
+    text: `I love the idea of knowing you beyond one moment,
+one mood or one chapter of life. Your changing dreams,
+your new interests, your wins, your difficult days —
+I want us to keep discovering each other.
+
+Tumhe har waqt happy rehne ka pressure nahi hai.
+Tumhe mere saamne pretend karne ki zaroorat nahi hai.
+Main chahta hoon ki hum apni real feelings ke saath
+honestly baat kar sakein. You deserve that kind of care. 💗`
+  },
+  {
+    title: 'If You Ever Reread This',
+    text: `Agar kisi din tum yeh letter dobara kholo,
+toh apni smile ke liye ek reason dhoondhna.
+Yaad karna ki life mein kitni possibilities hain,
+kitne dreams hain, kitni stories abhi likhi jaani hain.
+
+Aur humari story? Usse ek beautiful story banane ke liye
+sirf words nahi, hum dono ka daily effort chahiye.
+I hope we keep choosing kindness, laughter and honesty. 💌`
+  }
+];
+
+const moreThoughts = [
+  'Meri jaan, tumhari individuality aur dreams mere liye important hain. Main chahta hoon ki tum apni life mein grow karo aur apne goals achieve karo. Main tumhe cheer karne wala partner banna chahta hoon. ♡',
+  'Bubu, thank you for the memories we already have. Main unhe kisi perfect movie scene ki tarah nahi, balki humari real story ke beautiful moments ki tarah yaad rakhna chahta hoon. ❤️',
+  'Kabhi hum apni old chats padhenge aur hasenge ki hum kitni silly baatein karte the. I hope humari story mein aise bahut saare moments hon jinhe yaad karke hum dono smile karein. 🌸',
+  'Meri wife, I want our love to feel safe, honest and peaceful. Aisa pyaar jahan hum apne dil ki baat keh sakein, ek dusre ki boundaries respect karein aur mistakes se seekhein. ♡',
+  'Aaj ka yeh letter tumhare liye ek chhota sa reminder hai: tumhari happiness matters, tumhare dreams matter, aur tumhe care aur respect milna chahiye — har relationship mein. 💗',
+  'Bubuuuuu ji, humari story ka har chapter alag ho sakta hai. Kuch funny, kuch emotional, kuch difficult aur kuch unforgettable. I hope we keep meeting those chapters with patience and open hearts. ✨',
+  'Agar main tumhe ek gift de sakun, toh main chaahunga ki tum apne aap ko kabhi kam na samjho. Tum apne dreams, talents aur individuality ke saath valuable ho. Never forget that, meri jaan. 🌷'
+];
+
+function addChapter() {
+  chapterNumber++;
+  const data = chapters[(chapterNumber - 1) % chapters.length];
+  const isNewCycle = chapterNumber > chapters.length;
+
+  const card = document.createElement('section');
+  card.className = 'chapter';
+
+  const heading = document.createElement('h2');
+  heading.textContent = isNewCycle
+    ? `Chapter ${chapterNumber}: ${[
+        'One More Memory',
+        'A Fresh Page',
+        'Another Little Promise',
+        'Still Learning to Love',
+        'Our Next Adventure'
+      ][(chapterNumber - 1) % 5]} ♡`
+    : `Chapter ${chapterNumber}: ${data.title}`;
+
+  const paragraph = document.createElement('p');
+  paragraph.textContent = isNewCycle
+    ? moreThoughts[(chapterNumber - chapters.length - 1) % moreThoughts.length]
+    : data.text;
+
+  card.append(heading, paragraph);
+  document.getElementById('chapters').appendChild(card);
+
+  document.getElementById('counter').textContent =
+    `Chapter ${chapterNumber + 1} · More pages, more love ♡`;
+
+  floatHearts(5);
+
+  // Keep adding another page as the reader reaches the bottom.
+  if (chapterNumber % 3 === 0) {
+    const note = document.createElement('p');
+    note.style.cssText =
+      'text-align:center;color:#e5c9a8;font-size:20px;padding:20px;';
+    note.textContent = 'And there is still more I want to tell you, Bubu... ♡';
+    document.getElementById('chapters').appendChild(note);
+  }
+}
+
+function floatHearts(count = 8) {
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement('span');
+    heart.className = 'heart';
+    heart.textContent = ['♡', '♥', '💗', '✦'][Math.floor(Math.random() * 4)];
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (15 + Math.random() * 23) + 'px';
+    heart.style.animationDuration = (4 + Math.random() * 5) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 9500);
+  }
+}
+
+function toggleHearts() {
+  floatHearts(55);
+}
+
+function revealSecret() {
+  const secret = document.getElementById('secret');
+  secret.style.display = 'block';
+  floatHearts(30);
+}
+
+// Infinite reading: automatically add chapters near the bottom.
+// The button remains available whenever she wants another page.
+let autoLoading = false;
+
+window.addEventListener('scroll', () => {
+  if (document.getElementById('letterArea').hidden || autoLoading) return;
+
+  const nearBottom =
+    window.innerHeight + window.scrollY >= document.body.scrollHeight - 900;
+
+  if (nearBottom) {
+    autoLoading = true;
+    addChapter();
+    setTimeout(() => autoLoading = false, 1200);
+  }
+});
+</script>
+</body>
+</html>
